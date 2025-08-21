@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
@@ -11,6 +12,7 @@ import './App.css';
 function App() {
   return (
     <Router>
+      <Header />
       <div className="App">
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" />} />
