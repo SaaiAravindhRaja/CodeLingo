@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
@@ -24,6 +25,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 }
