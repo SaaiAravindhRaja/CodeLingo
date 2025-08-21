@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const SignupPage = () => {
     return (
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: 'calc(100vh - 112px)' }}>
-            <div className="ray-card" style={{ width: '400px' }}>
+            <div className="game-card" style={{ width: '400px' }}>
                 <h1 className="text-center mb-4">Create your Account</h1>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicUsername">
