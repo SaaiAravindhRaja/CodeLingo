@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 const Header = () => {
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar expand="lg" variant="dark" style={{ background: 'rgba(0, 0, 0, 0.3)', backdropFilter: 'blur(10px)' }}>
             <Container>
                 <LinkContainer to="/">
                     <Navbar.Brand>CodeLingo</Navbar.Brand>
