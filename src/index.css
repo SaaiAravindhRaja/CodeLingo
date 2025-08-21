@@ -8,7 +8,7 @@
   --ray-accent-blue: #4a90e2;
   --ray-accent-purple: #8a4ae2;
   --ray-border-light: rgba(255, 255, 255, 0.1);
-  --ray-shadow: rgba(0, 0, 0, 0.3);
+  --ray-shadow: rgba(0, 0, 0, 0.4); /* Slightly darker shadow */
 }
 
 body {
@@ -16,8 +16,9 @@ body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--ray-bg-dark);
+  background: radial-gradient(circle at top left, #2a2a2a, #1a1a1a); /* Subtle radial gradient */
   color: var(--ray-text-light);
+  min-height: 100vh; /* Ensure body takes full height for gradient */
 }
 
 code {

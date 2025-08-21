@@ -1,15 +1,18 @@
 .App {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .ray-card {
   background-color: var(--ray-bg-medium);
   border-radius: 8px;
   border: 1px solid var(--ray-border-light);
-  box-shadow: 0 4px 15px var(--ray-shadow);
+  box-shadow: 0 6px 20px var(--ray-shadow); /* Softer, more diffused shadow */
   padding: 30px;
   margin-top: 50px;
   color: var(--ray-text-light);
+  transition: all 0.3s ease; /* Prepare for hover effects */
 }
 
 .ray-card h1, .ray-card h2, .ray-card h3, .ray-card p {
@@ -21,10 +24,20 @@
   background-color: var(--ray-bg-dark) !important;
   color: var(--ray-text-light) !important;
   border-radius: 4px !important;
+  border: 1px solid var(--ray-border-light) !important; /* Add border to input */
+  transition: border-color 0.3s ease;
+}
+
+.MuiFilledInput-root:hover:not(.Mui-disabled):before {
+  border-bottom: none !important; /* Remove default hover underline */
+}
+
+.MuiFilledInput-root.Mui-focused {
+  border-color: var(--ray-accent-blue) !important; /* Highlight border on focus */
 }
 
 .MuiFilledInput-underline:before, .MuiFilledInput-underline:after {
-  border-bottom: 1px solid var(--ray-border-light) !important;
+  display: none !important; /* Remove default underlines */
 }
 
 .MuiInputLabel-filled {
@@ -40,21 +53,30 @@
     background-color: var(--ray-accent-blue);
     border-color: var(--ray-accent-blue);
     color: #fff;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for lift */
 }
 
 .btn-primary:hover {
     background-color: var(--ray-accent-purple);
     border-color: var(--ray-accent-purple);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+    transform: translateY(-1px); /* Slight lift */
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(74, 144, 226, 0.5); /* Focus ring */
 }
 
 /* Link Styling */
 a {
   color: var(--ray-accent-blue);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 a:hover {
   color: var(--ray-accent-purple);
-  text-decoration: underline;
+  text-decoration: none; /* Remove underline on hover for sleekness */
 }
