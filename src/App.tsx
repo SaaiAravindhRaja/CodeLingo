@@ -5,6 +5,7 @@ import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
 import CourseSelectionPage from './pages/CourseSelectionPage';
 import LessonScreen from './pages/LessonScreen';
+import ProfilePage from './pages/ProfilePage';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/courses" element={<CourseSelectionPage />} />
           <Route path="/lessons/:courseId" element={<LessonScreen />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>
     </Router>
