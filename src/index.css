@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 
 :root {
-  --ray-bg-dark: #1a1a1a;
-  --ray-bg-medium: #2a2a2a;
-  --ray-text-light: #e0e0e0;
-  --ray-text-dark: #a0a0a0;
-  --ray-accent-blue: #4a90e2;
-  --ray-accent-purple: #8a4ae2;
-  --ray-border-light: rgba(255, 255, 255, 0.1);
-  --ray-shadow: rgba(0, 0, 0, 0.4); /* Slightly darker shadow */
+  --game-primary-green: #8BC34A;
+  --game-secondary-blue: #2196F3;
+  --game-accent-yellow: #FFEB3B;
+  --game-bg-light: #F0F8FF; /* AliceBlue */
+  --game-text-dark: #333333;
+  --game-card-bg: #FFFFFF;
+  --game-border-light: rgba(0, 0, 0, 0.1);
+  --game-shadow: rgba(0, 0, 0, 0.2);
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: radial-gradient(circle at top left, #2a2a2a, #1a1a1a); /* Subtle radial gradient */
-  color: var(--ray-text-light);
-  min-height: 100vh; /* Ensure body takes full height for gradient */
+  background-color: var(--game-bg-light);
+  color: var(--game-text-dark);
+  min-height: 100vh;
 }
 
 code {

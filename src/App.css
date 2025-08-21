@@ -4,79 +4,80 @@
   flex-direction: column;
 }
 
-.ray-card {
-  background-color: var(--ray-bg-medium);
-  border-radius: 8px;
-  border: 1px solid var(--ray-border-light);
-  box-shadow: 0 6px 20px var(--ray-shadow); /* Softer, more diffused shadow */
+.game-card {
+  background-color: var(--game-card-bg);
+  border-radius: 15px; /* More rounded */
+  border: 1px solid var(--game-border-light);
+  box-shadow: 0 8px 20px var(--game-shadow); /* More pronounced shadow */
   padding: 30px;
   margin-top: 50px;
-  color: var(--ray-text-light);
-  transition: all 0.3s ease; /* Prepare for hover effects */
+  color: var(--game-text-dark);
+  transition: all 0.3s ease;
 }
 
-.ray-card h1, .ray-card h2, .ray-card h3, .ray-card p {
-  color: var(--ray-text-light);
+.game-card h1, .game-card h2, .game-card h3, .game-card p {
+  color: var(--game-text-dark);
 }
 
 /* Form Control Styling */
 .MuiFilledInput-root {
-  background-color: var(--ray-bg-dark) !important;
-  color: var(--ray-text-light) !important;
-  border-radius: 4px !important;
-  border: 1px solid var(--ray-border-light) !important; /* Add border to input */
+  background-color: rgba(255, 255, 255, 0.8) !important; /* Slightly transparent white */
+  color: var(--game-text-dark) !important;
+  border-radius: 8px !important; /* More rounded */
+  border: 1px solid var(--game-border-light) !important;
   transition: border-color 0.3s ease;
 }
 
 .MuiFilledInput-root:hover:not(.Mui-disabled):before {
-  border-bottom: none !important; /* Remove default hover underline */
+  border-bottom: none !important;
 }
 
 .MuiFilledInput-root.Mui-focused {
-  border-color: var(--ray-accent-blue) !important; /* Highlight border on focus */
+  border-color: var(--game-secondary-blue) !important; /* Highlight border on focus */
 }
 
 .MuiFilledInput-underline:before, .MuiFilledInput-underline:after {
-  display: none !important; /* Remove default underlines */
+  display: none !important;
 }
 
 .MuiInputLabel-filled {
-  color: var(--ray-text-dark) !important;
+  color: var(--game-text-dark) !important;
 }
 
 .MuiInputLabel-filled.Mui-focused {
-  color: var(--ray-accent-blue) !important;
+  color: var(--game-secondary-blue) !important;
 }
 
 /* Button Styling */
 .btn-primary {
-    background-color: var(--ray-accent-blue);
-    border-color: var(--ray-accent-blue);
+    background-color: var(--game-primary-green);
+    border-color: var(--game-primary-green);
     color: #fff;
+    border-radius: 8px; /* More rounded */
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for lift */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* More pronounced shadow for 3D effect */
 }
 
 .btn-primary:hover {
-    background-color: var(--ray-accent-purple);
-    border-color: var(--ray-accent-purple);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
-    transform: translateY(-1px); /* Slight lift */
+    background-color: var(--game-secondary-blue); /* Change color on hover */
+    border-color: var(--game-secondary-blue);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px); /* More pronounced lift */
 }
 
 .btn-primary:focus {
     outline: none;
-    box-shadow: 0 0 0 0.25rem rgba(74, 144, 226, 0.5); /* Focus ring */
+    box-shadow: 0 0 0 0.25rem rgba(139, 195, 74, 0.5); /* Green focus ring */
 }
 
 /* Link Styling */
 a {
-  color: var(--ray-accent-blue);
+  color: var(--game-secondary-blue);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: var(--ray-accent-purple);
-  text-decoration: none; /* Remove underline on hover for sleekness */
+  color: var(--game-primary-green); /* Change color on hover */
+  text-decoration: none;
 }
