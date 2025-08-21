@@ -5,26 +5,39 @@ import { Link } from 'react-router-dom';
 
 const SignupPage = () => {
     return (
-        <Container className="mt-5">
-            <h1>Create your CodeLingo Account</h1>
-            <Form>
-                <Form.Group className="mb-3" controlId="formBasicUsername">
-                    <TextField id="username" label="Username" variant="outlined" fullWidth />
-                </Form.Group>
+        <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+            <div className="glass-container" style={{ width: '400px' }}>
+                <h1 className="text-center mb-4">Create your Account</h1>
+                <Form>
+                    <Form.Group className="mb-3" controlId="formBasicUsername">
+                        <TextField id="username" label="Username" variant="filled" fullWidth
+                            InputLabelProps={{ style: { color: '#fff' } }}
+                            inputProps={{ style: { color: '#fff' } }}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <TextField id="email" label="Email" variant="outlined" fullWidth />
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <TextField id="email" label="Email" variant="filled" fullWidth
+                            InputLabelProps={{ style: { color: '#fff' } }}
+                            inputProps={{ style: { color: '#fff' } }}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <TextField id="password" label="Password" type="password" variant="outlined" fullWidth />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Sign Up
-                </Button>
-            </Form>
-            <div className="mt-3">
-                <Link to="/login">Already have an account? Login</Link>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <TextField id="password" label="Password" type="password" variant="filled" fullWidth
+                            InputLabelProps={{ style: { color: '#fff' } }}
+                            inputProps={{ style: { color: '#fff' } }}
+                        />
+                    </Form.Group>
+                    <div className="d-grid">
+                        <Button variant="primary" type="submit">
+                            Sign Up
+                        </Button>
+                    </div>
+                </Form>
+                <div className="mt-3 text-center">
+                    <Link to="/login" style={{ color: '#fff' }}>Already have an account? Login</Link>
+                </div>
             </div>
         </Container>
     );
