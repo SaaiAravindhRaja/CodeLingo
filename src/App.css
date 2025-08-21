@@ -2,32 +2,59 @@
   min-height: 100vh;
 }
 
-.glass-container {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+.ray-card {
+  background-color: var(--ray-bg-medium);
+  border-radius: 8px;
+  border: 1px solid var(--ray-border-light);
+  box-shadow: 0 4px 15px var(--ray-shadow);
   padding: 30px;
   margin-top: 50px;
-  color: #fff;
+  color: var(--ray-text-light);
 }
 
-.glass-container h1, .glass-container h2, .glass-container h3, .glass-container p {
-  color: #fff;
+.ray-card h1, .ray-card h2, .ray-card h3, .ray-card p {
+  color: var(--ray-text-light);
 }
 
-.form-control, .form-control:focus {
-  background: rgba(255, 255, 255, 0.2) !important;
-  color: #fff !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+/* Form Control Styling */
+.MuiFilledInput-root {
+  background-color: var(--ray-bg-dark) !important;
+  color: var(--ray-text-light) !important;
+  border-radius: 4px !important;
 }
 
-.form-control::placeholder {
-  color: #eee !important;
+.MuiFilledInput-underline:before, .MuiFilledInput-underline:after {
+  border-bottom: 1px solid var(--ray-border-light) !important;
 }
 
+.MuiInputLabel-filled {
+  color: var(--ray-text-dark) !important;
+}
+
+.MuiInputLabel-filled.Mui-focused {
+  color: var(--ray-accent-blue) !important;
+}
+
+/* Button Styling */
 .btn-primary {
-    background-color: #61dafb;
-    border-color: #61dafb;
+    background-color: var(--ray-accent-blue);
+    border-color: var(--ray-accent-blue);
+    color: #fff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--ray-accent-purple);
+    border-color: var(--ray-accent-purple);
+}
+
+/* Link Styling */
+a {
+  color: var(--ray-accent-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--ray-accent-purple);
+  text-decoration: underline;
 }
