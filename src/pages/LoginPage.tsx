@@ -17,10 +17,7 @@ const LoginPage = () => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <TextField id="password" label="Password" type="password" variant="filled" fullWidth
-                            InputLabelProps={{ style: { color: 'var(--ray-text-dark)' } }}
-                            inputProps={{ style: { color: 'var(--ray-text-light)' } }}
-                        />
+                        <TextField id="password" label="Password" type="password" variant="filled" fullWidth />
                     </Form.Group>
                     <div className="d-grid">
                         <Button variant="primary" type="submit">
