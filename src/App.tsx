@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
 import CourseSelectionPage from './pages/CourseSelectionPage';
+import LessonScreen from './pages/LessonScreen';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/courses" element={<CourseSelectionPage />} />
+          <Route path="/lessons/:courseId" element={<LessonScreen />} />
         </Routes>
       </div>
     </Router>
