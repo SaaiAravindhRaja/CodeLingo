@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const CourseSelectionPage = () => {
@@ -7,21 +7,21 @@ const CourseSelectionPage = () => {
 
     return (
         <Container className="mt-5">
-            <h1>Select a Course</h1>
-            <Row className="mt-4">
-                {courses.map(course => (
-                    <Col md={4} className="mb-4" key={course}>
-                        <Card as={Link} to={`/lessons/${course.toLowerCase()}`} className="text-decoration-none">
-                            <Card.Body>
-                                <Card.Title>{course}</Card.Title>
-                                <Card.Text>
-                                    Learn the fundamentals of {course}.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
+            <div className="glass-container">
+                <h1 className="mb-4 text-center">Select a Course</h1>
+                <Row>
+                    {courses.map(course => (
+                        <Col md={4} className="mb-4" key={course}>
+                            <Link to={`/lessons/${course.toLowerCase()}`} className="text-decoration-none">
+                                <div className="glass-container text-center p-4 h-100">
+                                    <h3>{course}</h3>
+                                    <p>Learn the fundamentals of {course}.</p>
+                                </div>
+                            </Link>
+                        </Col>
+                    ))}
+                </Row>
+            </div>
         </Container>
     );
 };
