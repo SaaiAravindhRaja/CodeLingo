@@ -1,42 +1,35 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const DashboardPage = () => {
     return (
         <Container className="mt-5">
-            <h1>Dashboard</h1>
-            <Row className="mt-4">
-                <Col>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Daily Streak</Card.Title>
-                            <Card.Text>
-                                5 days
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>XP Points</Card.Title>
-                            <Card.Text>
-                                1200 XP
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Level</Card.Title>
-                            <Card.Text>
-                                Level 5
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
+            <div className="glass-container">
+                <h1 className="mb-4">Dashboard</h1>
+                <Row>
+                    <Col md={4}>
+                        <div className="glass-container text-center p-4">
+                            <h3>Daily Streak</h3>
+                            <p className="fs-1">5</p>
+                            <p>days</p>
+                        </div>
+                    </Col>
+                    <Col md={4}>
+                        <div className="glass-container text-center p-4">
+                            <h3>XP Points</h3>
+                            <p className="fs-1">1200</p>
+                            <p>XP</p>
+                        </div>
+                    </Col>
+                    <Col md={4}>
+                        <div className="glass-container text-center p-4">
+                            <h3>Level</h3>
+                            <p className="fs-1">5</p>
+                            <p>Beginner</p>
+                        </div>
+                    </Col>
+                </Row>
+            </div>
         </Container>
     );
 };
