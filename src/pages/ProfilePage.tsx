@@ -13,7 +13,7 @@ const ProfilePage = () => {
                        <img src="../images/profile.png" height="200" className="rounded-circle" alt="Profile" />
                     </Col>
                     <Col md={10}>
-                        <h2>Tom</h2>
+                        <h2>Jonathan</h2>
                         <p>Joined: June 2025</p>
                     </Col>
                 </Row>
