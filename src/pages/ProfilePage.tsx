@@ -2,16 +2,17 @@ import React from 'react';
 import { Container, Row, Col, ProgressBar } from 'react-bootstrap';
 
 const ProfilePage = () => {
+   
     return (
         <Container className="mt-5">
             <div className="game-card">
                 <Row className="align-items-center">
                     <Col md={2} className="text-center">
-                        <img src="https://via.placeholder.com/150" alt="profile" className="rounded-circle" />
+                       <img src="https://via.placeholder.com/100" alt="Profile" className="rounded-circle"/>
                     </Col>
                     <Col md={10}>
-                        <h2>User Name</h2>
-                        <p>Joined: January 2024</p>
+                        <h2>Name</h2>
+                        <p>Joined: June 2025</p>
                     </Col>
                 </Row>
             </div>

@@ -1,25 +1,30 @@
 .App {
-  min-height: 100vh;
+  min-height: 100vh; /* Ensure the app takes full viewport height */
   display: flex;
   flex-direction: column;
 }
 
 .game-card {
-  background-color: var(--game-card-bg);
   border-radius: 15px; /* More rounded */
   border: 1px solid var(--game-border-light);
   box-shadow: 0 8px 20px var(--game-shadow); /* More pronounced shadow */
-  padding: 30px;
-  margin-top: 50px;
+  padding: 30px; /* Adjusted for better spacing */
+  margin-top: 30px; /* Adjusted margin-top */
   color: var(--game-text-dark);
   transition: all 0.3s ease;
+}
+
+/* Hover effect for game cards */
+.game-card:hover {
+  transform: translateY(-5px); /* Slightly lift the card */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25); /* More pronounced shadow on hover */
 }
 
 .game-card h1, .game-card h2, .game-card h3, .game-card p {
   color: var(--game-text-dark);
 }
 
-/* Form Control Styling */
+/* Form Control Styling for Material UI TextField */
 .MuiFilledInput-root {
   background-color: rgba(255, 255, 255, 0.8) !important; /* Slightly transparent white */
   color: var(--game-text-dark) !important;
