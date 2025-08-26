@@ -135,8 +135,13 @@ router.post('/login', [
     }
 
     // Update streak and last active date
-    user.updateStreak();
-    await user.save();
+    try {
+      user.updateStreak();
+      await user.save();
+    } catch (streakError) {
+      console.error('Error updating streak:', streakError);
+      // Continue with login even if streak update fails
+    }
 
     // Generate token
     const token = generateToken(user._id);
@@ -156,7 +161,11 @@ router.post('/login', [
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ message: 'Server error during login' });
+    console.error('Error stack:', error.stack);
+    res.status(500).json({ 
+      message: 'Server error during login',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 });
 
