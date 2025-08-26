@@ -5,6 +5,7 @@
 }
 
 .game-card {
+  background-color: var(--game-card-bg); /* Use the variable for consistency */
   border-radius: 15px; /* More rounded */
   border: 1px solid var(--game-border-light);
   box-shadow: 0 8px 20px var(--game-shadow); /* More pronounced shadow */
