@@ -1,0 +1,230 @@
+/* Advanced glow and visual effects */
+
+.chatbot-toggle {
+  position: relative;
+  overflow: visible;
+}
+
+.chatbot-toggle::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: rotate 3s linear infinite;
+}
+
+.chatbot-toggle:hover::before {
+  opacity: 0.7;
+}
+
+.chatbot-interface {
+  position: relative;
+  overflow: hidden;
+}
+
+.chatbot-interface::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.chatbot-interface:hover::before {
+  left: 100%;
+}
+
+/* Message bubble glow effects */
+.user-message__bubble {
+  position: relative;
+  overflow: hidden;
+}
+
+.user-message__bubble::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.user-message:hover .user-message__bubble::after {
+  left: 100%;
+}
+
+.ai-message__bubble {
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-message__bubble::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(102, 126, 234, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.ai-message:hover .ai-message__bubble::after {
+  left: 100%;
+}
+
+/* Floating animation for avatars */
+.ai-message__avatar,
+.user-message__avatar {
+  animation: float 3s ease-in-out infinite;
+}
+
+.user-message__avatar {
+  animation-delay: 0.5s;
+}
+
+/* Gradient text effect for headers */
+.chatbot-interface__info h3 {
+  background: linear-gradient(45deg, #ffffff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pulsing status indicator */
+.chatbot-interface__status::before {
+  box-shadow: 0 0 10px #4ade80;
+}
+
+/* Enhanced button hover effects */
+.message-input__send-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.message-input__send-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.message-input__send-btn:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+/* Shimmer effect for loading states */
+.loading-indicator__bubble {
+  background: linear-gradient(
+    90deg,
+    #f8f9fa 25%,
+    #e9ecef 50%,
+    #f8f9fa 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Keyframe animations */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Glass morphism effect */
+.chatbot-widget__backdrop {
+  backdrop-filter: blur(10px) saturate(180%);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced shadows */
+.chatbot-interface {
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.chatbot-toggle {
+  box-shadow: 
+    0 8px 32px rgba(102, 126, 234, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+/* Disable effects for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .chatbot-toggle::before,
+  .chatbot-interface::before,
+  .user-message__bubble::after,
+  .ai-message__bubble::after,
+  .message-input__send-btn::before {
+    display: none;
+  }
+  
+  .ai-message__avatar,
+  .user-message__avatar {
+    animation: none;
+  }
+  
+  .loading-indicator__bubble {
+    animation: none;
+    background: #f8f9fa;
+  }
+}
