@@ -1,25 +1,31 @@
 .App {
-  min-height: 100vh;
+  min-height: 100vh; /* Ensure the app takes full viewport height */
   display: flex;
   flex-direction: column;
 }
 
 .game-card {
-  background-color: var(--game-card-bg);
+  background-color: var(--game-card-bg); /* Use the variable for consistency */
   border-radius: 15px; /* More rounded */
   border: 1px solid var(--game-border-light);
   box-shadow: 0 8px 20px var(--game-shadow); /* More pronounced shadow */
-  padding: 30px;
-  margin-top: 50px;
+  padding: 30px; /* Adjusted for better spacing */
+  margin-top: 30px; /* Adjusted margin-top */
   color: var(--game-text-dark);
   transition: all 0.3s ease;
+}
+
+/* Hover effect for game cards */
+.game-card:hover {
+  transform: translateY(-5px); /* Slightly lift the card */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25); /* More pronounced shadow on hover */
 }
 
 .game-card h1, .game-card h2, .game-card h3, .game-card p {
   color: var(--game-text-dark);
 }
 
-/* Form Control Styling */
+/* Form Control Styling for Material UI TextField */
 .MuiFilledInput-root {
   background-color: rgba(255, 255, 255, 0.8) !important; /* Slightly transparent white */
   color: var(--game-text-dark) !important;
@@ -48,14 +54,18 @@
   color: var(--game-secondary-blue) !important;
 }
 
+.rounded-circle {
+  padding: 30px;
+}
 /* Button Styling */
 .btn-primary {
-    background-color: var(--game-primary-green);
+   
     border-color: var(--game-primary-green);
     color: #fff;
     border-radius: 8px; /* More rounded */
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* More pronounced shadow for 3D effect */
+   
 }
 
 .btn-primary:hover {
@@ -68,6 +78,28 @@
 .btn-primary:focus {
     outline: none;
     box-shadow: 0 0 0 0.25rem rgba(139, 195, 74, 0.5); /* Green focus ring */
+}
+
+.btn.btn-primary.select {
+    background-color: green;
+    padding: 12px; /* Increased padding for better touch target */
+    font-size: 1.1rem; /* Slightly larger text */
+    font-weight: 600; /* Semi-bold text */
+    margin-top: 100px;
+    margin-left: 20%;
+    height: 100px;
+    width: 300px;
+}
+
+.btn.btn-primary.recommended {
+    background-color: red;
+    padding: 12px; /* Increased padding for better touch target */
+    font-size: 1.1rem; /* Slightly larger text */
+    font-weight: 600; /* Semi-bold text */
+    margin-top: 100px;
+    margin-left: 20%;
+    height: 100px;
+    width: 300px;
 }
 
 /* Link Styling */
