@@ -1,0 +1,158 @@
+.loading-indicator {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  justify-content: flex-start;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.loading-indicator__avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  animation: aiPulse 2s infinite;
+}
+
+.loading-indicator__bubble {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #212529;
+  padding: 12px 16px;
+  border-radius: 20px 20px 20px 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  min-width: 120px;
+}
+
+.loading-indicator__dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #667eea;
+  border-radius: 50%;
+  animation: typingDots 1.4s infinite ease-in-out;
+}
+
+.dot--1 {
+  animation-delay: 0s;
+}
+
+.dot--2 {
+  animation-delay: 0.2s;
+}
+
+.dot--3 {
+  animation-delay: 0.4s;
+}
+
+.loading-indicator__message {
+  font-size: 0.75rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+@keyframes typingDots {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+@keyframes aiPulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 2px 12px rgba(102, 126, 234, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .loading-indicator__avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .loading-indicator__avatar svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .loading-indicator__bubble {
+    padding: 10px 14px;
+    border-radius: 18px 18px 18px 4px;
+    min-width: 100px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .loading-indicator__message {
+    font-size: 0.7rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .loading-indicator__bubble {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    color: #e2e8f0;
+    border-color: rgba(102, 126, 234, 0.3);
+  }
+
+  .loading-indicator__message {
+    color: #a0aec0;
+  }
+
+  .dot {
+    background: #a0aec0;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .loading-indicator {
+    animation: none;
+  }
+  
+  .loading-indicator__avatar {
+    animation: none;
+  }
+  
+  .dot {
+    animation: none;
+    opacity: 0.6;
+  }
+}
