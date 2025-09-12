@@ -5,6 +5,8 @@ import {
   LessonResponse,
   LessonCompleteResponse,
   LeaderboardResponse,
+  CoursesResponse,
+  CourseResponse,
   ApiError
 } from '../types';
 
@@ -85,6 +87,45 @@ class ApiService {
     });
     
     return this.handleResponse<{ message: string }>(response);
+  }
+
+  // Courses endpoints
+  async getCourses(params?: {
+    language?: string;
+    level?: string;
+    search?: string;
+  }): Promise<CoursesResponse> {
+    const queryParams = new URLSearchParams();
+    if (params) {
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined) {
+          queryParams.append(key, value.toString());
+        }
+      });
+    }
+    
+    const response = await fetch(`${API_BASE_URL}/courses?${queryParams}`, {
+      headers: this.getAuthHeaders(),
+    });
+    
+    return this.handleResponse<CoursesResponse>(response);
+  }
+
+  async getCourse(id: string): Promise<CourseResponse> {
+    const response = await fetch(`${API_BASE_URL}/courses/${id}`, {
+      headers: this.getAuthHeaders(),
+    });
+    
+    return this.handleResponse<CourseResponse>(response);
+  }
+
+  async enrollInCourse(id: string): Promise<any> {
+    const response = await fetch(`${API_BASE_URL}/courses/${id}/enroll`, {
+      method: 'POST',
+      headers: this.getAuthHeaders(),
+    });
+    
+    return this.handleResponse<any>(response);
   }
 
   // Lessons endpoints

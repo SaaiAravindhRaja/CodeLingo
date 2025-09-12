@@ -41,8 +41,8 @@ const lessonSchema = new mongoose.Schema({
   },
   language: {
     type: String,
-    required: [true, 'Target language is required'],
-    enum: ['spanish', 'french', 'german', 'italian', 'portuguese', 'japanese', 'korean', 'chinese']
+    required: [true, 'Programming language is required'],
+    enum: ['python', 'javascript', 'java', 'cpp', 'csharp', 'go', 'rust', 'swift', 'kotlin', 'php', 'ruby', 'typescript']
   },
   level: {
     type: String,
@@ -51,7 +51,7 @@ const lessonSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ['vocabulary', 'grammar', 'conversation', 'pronunciation', 'culture'],
+    enum: ['basics', 'data-structures', 'algorithms', 'oop', 'web-development', 'databases', 'testing', 'advanced'],
     required: true
   },
   order: {
@@ -73,18 +73,20 @@ const lessonSchema = new mongoose.Schema({
   content: {
     introduction: {
       type: String,
-      maxlength: [1000, 'Introduction cannot exceed 1000 characters']
+      maxlength: [2000, 'Introduction cannot exceed 2000 characters']
     },
-    vocabulary: [{
-      word: String,
-      translation: String,
-      pronunciation: String,
-      example: String
-    }],
-    grammarRules: [{
-      rule: String,
+    concepts: [{
+      concept: String,
       explanation: String,
-      examples: [String]
+      codeExample: String,
+      output: String
+    }],
+    exercises: [{
+      title: String,
+      description: String,
+      starterCode: String,
+      solution: String,
+      hints: [String]
     }]
   },
   questions: [questionSchema],

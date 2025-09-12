@@ -164,6 +164,148 @@ export interface LeaderboardEntry {
   streak: number;
 }
 
+// Course Types
+export interface Course {
+  _id: string;
+  title: string;
+  description: string;
+  language: string;
+  level: 'beginner' | 'intermediate' | 'advanced';
+  thumbnail?: string;
+  estimatedHours: number;
+  totalXP: number;
+  prerequisites?: string[];
+  sections: Section[];
+  tags: string[];
+  isPublished: boolean;
+  createdBy: string;
+  stats: {
+    totalEnrollments: number;
+    averageRating: number;
+    completionRate: number;
+  };
+  pricing: {
+    isFree: boolean;
+    price: number;
+  };
+  userProgress?: {
+    enrolled: boolean;
+    progress: number;
+    enrolledAt?: string;
+  };
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Section {
+  _id: string;
+  title: string;
+  description?: string;
+  courseId: string;
+  order: number;
+  estimatedMinutes: number;
+  xpReward: number;
+  lessons: Lesson[];
+  quiz?: Quiz;
+  isLocked: boolean;
+  prerequisites?: string[];
+  userProgress?: {
+    completed: boolean;
+    completedAt?: string;
+    score?: number;
+  };
+}
+
+export interface Quiz {
+  _id: string;
+  title: string;
+  description?: string;
+  sectionId: string;
+  questions: QuizQuestion[];
+  passingScore: number;
+  timeLimit: number;
+  maxAttempts: number;
+  xpReward: number;
+  isRequired: boolean;
+  userAttempts?: {
+    attemptsUsed: number;
+    maxAttempts: number;
+    canRetake: boolean;
+  };
+}
+
+export interface QuizQuestion {
+  _id: string;
+  type: 'multiple-choice' | 'code-completion' | 'true-false' | 'fill-blank' | 'code-output';
+  question: string;
+  code?: string;
+  options?: QuizOption[];
+  correctAnswer?: string;
+  explanation: string;
+  points: number;
+  difficulty: 'easy' | 'medium' | 'hard';
+}
+
+export interface QuizOption {
+  text: string;
+  isCorrect?: boolean; // Hidden from students
+}
+
+// Course API Response Types
+export interface CoursesResponse {
+  courses: Course[];
+  pagination?: {
+    currentPage: number;
+    totalPages: number;
+    totalCourses: number;
+    hasNext: boolean;
+    hasPrev: boolean;
+  };
+}
+
+export interface CourseResponse {
+  course: Course;
+}
+
+export interface QuizResponse {
+  quiz: Quiz;
+}
+
+export interface QuizSubmitResponse {
+  message: string;
+  results: {
+    score: number;
+    correctAnswers: number;
+    totalQuestions: number;
+    passed: boolean;
+    passingScore: number;
+    xpEarned: number;
+    timeSpent?: number;
+    attemptsUsed: number;
+    maxAttempts: number;
+    canRetake: boolean;
+  };
+  questionResults?: QuestionResult[];
+  userProgress: {
+    currentLevel: number;
+    totalXP: number;
+    streak: number;
+    xpForNextLevel: {
+      current: number;
+      required: number;
+      remaining: number;
+    };
+  };
+}
+
+export interface QuestionResult {
+  questionIndex: number;
+  userAnswer: string;
+  isCorrect: boolean;
+  correctAnswer: string;
+  explanation: string;
+}
+
 // API Error Types
 export interface ApiError {
   message: string;

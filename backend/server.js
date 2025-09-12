@@ -8,6 +8,9 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const lessonRoutes = require('./routes/lessons');
 const userRoutes = require('./routes/users');
+const courseRoutes = require('./routes/courses');
+const quizRoutes = require('./routes/quizzes');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
@@ -41,6 +44,9 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/codelingo
 app.use('/api/auth', authRoutes);
 app.use('/api/lessons', lessonRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/courses', courseRoutes);
+app.use('/api/quizzes', quizRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

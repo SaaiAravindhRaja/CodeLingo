@@ -1,1 +1,0 @@
-export { GeminiService, geminiService } from './geminiService';

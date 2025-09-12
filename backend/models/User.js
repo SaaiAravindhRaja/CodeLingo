@@ -59,21 +59,87 @@ const userSchema = new mongoose.Schema({
       type: Date,
       default: Date.now
     },
-    completedLessons: [{
-      lessonId: {
+    enrolledCourses: [{
+      courseId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Lesson'
+        ref: 'Course'
       },
-      completedAt: {
+      enrolledAt: {
         type: Date,
         default: Date.now
       },
-      score: {
+      progress: {
         type: Number,
-        min: 0,
-        max: 100
+        default: 0 // Percentage
+      },
+      completedSections: [{
+        sectionId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Section'
+        },
+        completedAt: {
+          type: Date,
+          default: Date.now
+        },
+        score: {
+          type: Number,
+          min: 0,
+          max: 100
+        }
+      }],
+      completedLessons: [{
+        lessonId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Lesson'
+        },
+        completedAt: {
+          type: Date,
+          default: Date.now
+        },
+        score: {
+          type: Number,
+          min: 0,
+          max: 100
+        }
+      }],
+      quizAttempts: [{
+        quizId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Quiz'
+        },
+        attempts: [{
+          score: Number,
+          passed: Boolean,
+          completedAt: {
+            type: Date,
+            default: Date.now
+          },
+          timeSpent: Number // in seconds
+        }]
+      }]
+    }],
+    achievements: [{
+      type: {
+        type: String,
+        enum: ['first_lesson', 'first_quiz', 'streak_7', 'streak_30', 'level_up', 'course_complete', 'perfect_quiz', 'speed_demon']
+      },
+      earnedAt: {
+        type: Date,
+        default: Date.now
+      },
+      xpBonus: {
+        type: Number,
+        default: 0
       }
-    }]
+    }],
+    weeklyXP: {
+      type: Number,
+      default: 0
+    },
+    monthlyXP: {
+      type: Number,
+      default: 0
+    }
   },
   preferences: {
     language: {
@@ -149,15 +215,93 @@ userSchema.methods.updateStreak = function() {
   this.progress.lastActiveDate = today;
 };
 
-// Add XP method
-userSchema.methods.addXP = function(points) {
-  this.progress.totalXP += points;
+// Add XP method with multipliers and bonuses
+userSchema.methods.addXP = function(points, type = 'lesson') {
+  let finalPoints = points;
   
-  // Level up logic (every 1000 XP = 1 level)
-  const newLevel = Math.floor(this.progress.totalXP / 1000) + 1;
-  if (newLevel > this.progress.currentLevel) {
-    this.progress.currentLevel = newLevel;
+  // Apply multipliers based on activity type
+  const multipliers = {
+    lesson: 1.0,
+    quiz: 1.5,
+    perfect_quiz: 2.0,
+    streak_bonus: 0.1 * this.progress.streak, // 10% per streak day
+    first_time: 1.2
+  };
+  
+  if (multipliers[type]) {
+    finalPoints = Math.round(points * multipliers[type]);
   }
+  
+  // Streak bonus (additional XP based on current streak)
+  if (this.progress.streak > 0) {
+    const streakBonus = Math.round(points * multipliers.streak_bonus);
+    finalPoints += streakBonus;
+  }
+  
+  this.progress.totalXP += finalPoints;
+  this.progress.weeklyXP += finalPoints;
+  this.progress.monthlyXP += finalPoints;
+  
+  // Advanced level up logic with increasing XP requirements
+  const getXPRequiredForLevel = (level) => {
+    return Math.floor(1000 * Math.pow(1.2, level - 1));
+  };
+  
+  let currentLevelXP = 0;
+  for (let i = 1; i < this.progress.currentLevel; i++) {
+    currentLevelXP += getXPRequiredForLevel(i);
+  }
+  
+  while (this.progress.totalXP >= currentLevelXP + getXPRequiredForLevel(this.progress.currentLevel)) {
+    currentLevelXP += getXPRequiredForLevel(this.progress.currentLevel);
+    this.progress.currentLevel += 1;
+    
+    // Award level up achievement
+    this.addAchievement('level_up', 100);
+  }
+  
+  return finalPoints;
+};
+
+// Add achievement method
+userSchema.methods.addAchievement = function(type, xpBonus = 0) {
+  const existingAchievement = this.progress.achievements.find(a => a.type === type);
+  
+  if (!existingAchievement) {
+    this.progress.achievements.push({
+      type,
+      xpBonus,
+      earnedAt: new Date()
+    });
+    
+    if (xpBonus > 0) {
+      this.progress.totalXP += xpBonus;
+    }
+    
+    return true;
+  }
+  
+  return false;
+};
+
+// Get XP required for next level
+userSchema.methods.getXPForNextLevel = function() {
+  const getXPRequiredForLevel = (level) => {
+    return Math.floor(1000 * Math.pow(1.2, level - 1));
+  };
+  
+  let currentLevelXP = 0;
+  for (let i = 1; i < this.progress.currentLevel; i++) {
+    currentLevelXP += getXPRequiredForLevel(i);
+  }
+  
+  const nextLevelXP = currentLevelXP + getXPRequiredForLevel(this.progress.currentLevel);
+  
+  return {
+    current: this.progress.totalXP - currentLevelXP,
+    required: getXPRequiredForLevel(this.progress.currentLevel),
+    remaining: nextLevelXP - this.progress.totalXP
+  };
 };
 
 module.exports = mongoose.model('User', userSchema);

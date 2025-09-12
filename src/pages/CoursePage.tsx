@@ -3,12 +3,10 @@ import { Container, Row, Col, Card, Button, Badge, Spinner, Alert } from 'react-
 import { LinkContainer } from 'react-router-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
 import apiService from '../services/api';
-import { Course } from '../types';
 
-
-const PlayPage = () => {
+const CoursePage = () => {
     const { isAuthenticated } = useAuth();
-    const [courses, setCourses] = useState<Course[]>([]);
+    const [courses, setCourses] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [selectedLanguage, setSelectedLanguage] = useState<string>('all');
@@ -86,10 +84,10 @@ const PlayPage = () => {
                             WebkitTextFillColor: 'transparent',
                             marginBottom: '1rem'
                         }}>
-                            🎮 Choose Your Adventure
+                            💻 Programming Courses
                         </h1>
                         <p style={{ fontSize: '1.2rem', color: '#718096', maxWidth: '600px', margin: '0 auto' }}>
-                            Select a programming language and start your interactive learning journey!
+                            Master programming languages with structured courses, hands-on projects, and interactive quizzes!
                         </p>
                     </Col>
                 </Row>
@@ -156,7 +154,7 @@ const PlayPage = () => {
                         <Col xs="auto">
                             <div className="text-center">
                                 <Spinner animation="border" variant="primary" />
-                                <p className="mt-2">Loading lessons...</p>
+                                <p className="mt-2">Loading courses...</p>
                             </div>
                         </Col>
                     </Row>
@@ -173,7 +171,7 @@ const PlayPage = () => {
                     </Row>
                 )}
 
-                {/* Lessons Grid */}
+                {/* Courses Grid */}
                 {!loading && !error && (
                     <>
                         <Row className="mb-3">
@@ -217,10 +215,10 @@ const PlayPage = () => {
                                                 <div style={{
                                                     background: `linear-gradient(135deg, ${langInfo.color}, ${langInfo.color}dd)`,
                                                     color: 'white',
-                                                    padding: '1rem',
+                                                    padding: '1.5rem',
                                                     textAlign: 'center'
                                                 }}>
-                                                    <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>
+                                                    <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>
                                                         {langInfo.icon}
                                                     </div>
                                                     <Badge 
@@ -244,8 +242,8 @@ const PlayPage = () => {
                                                         >
                                                             {course.level.charAt(0).toUpperCase() + course.level.slice(1)}
                                                         </Badge>
-                                                        <Badge bg="secondary">
-                                                            Course
+                                                        <Badge bg="info">
+                                                            {course.sections?.length || 0} Sections
                                                         </Badge>
                                                     </div>
                                                     
@@ -283,13 +281,13 @@ const PlayPage = () => {
                                                         <div style={{ 
                                                             marginTop: '0.5rem',
                                                             padding: '0.5rem',
-                                                            backgroundColor: '#f0fdf4',
+                                                            backgroundColor: course.userProgress.progress === 100 ? '#f0fdf4' : '#eff6ff',
                                                             borderRadius: '0.5rem',
                                                             textAlign: 'center',
                                                             fontSize: '0.8rem',
-                                                            color: '#166534'
+                                                            color: course.userProgress.progress === 100 ? '#166534' : '#1d4ed8'
                                                         }}>
-                                                            📚 Enrolled • Progress: {course.userProgress.progress}%
+                                                            {course.userProgress.progress === 100 ? '🎉 Completed!' : `📚 ${course.userProgress.progress}% Complete`}
                                                         </div>
                                                     )}
 
@@ -305,7 +303,9 @@ const PlayPage = () => {
                                                                         fontWeight: '600'
                                                                     }}
                                                                 >
-                                                                    {course.userProgress?.enrolled ? '📚 Continue Course' : '🚀 Start Course'}
+                                                                    {course.userProgress?.enrolled ? 
+                                                                        (course.userProgress.progress === 100 ? '🔄 Review Course' : '📖 Continue Learning') 
+                                                                        : '🚀 Start Course'}
                                                                 </Button>
                                                             </LinkContainer>
                                                         ) : (
@@ -318,7 +318,7 @@ const PlayPage = () => {
                                                                         fontWeight: '600'
                                                                     }}
                                                                 >
-                                                                    🔐 Login to Play
+                                                                    🔐 Login to Start
                                                                 </Button>
                                                             </LinkContainer>
                                                         )}
@@ -345,9 +345,9 @@ const PlayPage = () => {
                                 textAlign: 'center'
                             }}>
                                 <Card.Body className="p-4">
-                                    <h4 style={{ marginBottom: '1rem' }}>Ready to Start Learning?</h4>
+                                    <h4 style={{ marginBottom: '1rem' }}>Ready to Start Coding?</h4>
                                     <p style={{ opacity: 0.9, marginBottom: '1.5rem' }}>
-                                        Create a free account to track your progress, earn XP, and unlock achievements!
+                                        Join thousands of developers learning to code with our structured courses and interactive projects!
                                     </p>
                                     <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                                         <LinkContainer to="/signup">
@@ -385,4 +385,4 @@ const PlayPage = () => {
     );
 };
 
-export default PlayPage;
+export default CoursePage;
